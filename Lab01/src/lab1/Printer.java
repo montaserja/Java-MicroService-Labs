@@ -23,6 +23,4 @@ public class Printer {
 		this.visitors = v;
 	}
 	
-	
-	
 }
