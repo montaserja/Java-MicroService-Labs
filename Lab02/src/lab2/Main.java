@@ -33,6 +33,18 @@ public class Main {
 		/*****************************************************************************************/
 
 		System.out.println("\n" + line + "Question 4" + line + "\n");
+		
+		Q4 q4 = new Q4();
+		System.out.println(q4);
+		q4.print_bigger();
+		
+		/*****************************************************************************************/
+
+		System.out.println("\n" + line + "Question 5" + line + "\n");
+		
+		Q5 q5 = new Q5();
+		System.out.println(q5);
+		q5.print_smaller();
 
 	
 	}
