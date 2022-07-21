@@ -20,6 +20,21 @@ public class Main {
 		Q2 q2 = new Q2();
 		System.out.println(q2);
 		q2.bingo();
+		
+		/*****************************************************************************************/
+
+		System.out.println("\n" + line + "Question 3" + line + "\n");
+		
+		SalaryRaiser s = new SalaryRaiser();
+		System.out.println(s);
+		s.raise();
+		System.out.println(s);
+		
+		/*****************************************************************************************/
+
+		System.out.println("\n" + line + "Question 4" + line + "\n");
+
+	
 	}
 
 }
