@@ -2,7 +2,7 @@ package lab1;
 
 public class Test {
 	
-	private int a , b;
+	protected int a , b;
 	
 	public Test() {
 		this.a = (int)(Math.random()*101);

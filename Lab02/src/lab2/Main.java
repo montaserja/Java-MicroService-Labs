@@ -45,7 +45,21 @@ public class Main {
 		Q5 q5 = new Q5();
 		System.out.println(q5);
 		q5.print_smaller();
+		
+		/*****************************************************************************************/
 
+		System.out.println("\n" + line + "Question 6" + line + "\n");
+		
+		TaxCalculator cal = new TaxCalculator();
+		int rand = (int)(Math.random()*1000000);
+		cal.calculate(rand);
+		
+		/*****************************************************************************************/
+
+		System.out.println("\n" + line + "Question 8" + line + "\n");
+		
+		LeapYearCheck leap = new LeapYearCheck();
+		leap.check(1990);
 	
 	}
 
