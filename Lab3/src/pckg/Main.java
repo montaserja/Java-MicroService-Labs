@@ -146,6 +146,40 @@ public class Main {
 		
 		System.out.println("\n" + line + "Question 15" + line + "\n");
 		
+		Boom boom = new Boom();
+		boom.printBoom();
+		
+		/*****************************************************************************************/
+		
+		System.out.println("\n" + line + "Question 16" + line + "\n");
+		
+		Fibonacci fib = new Fibonacci();
+		fib.print_first(1, 40);
+		fib.print_random();
+		fib.print_random_set();
+		
+		/*****************************************************************************************/
+		
+		System.out.println("\n" + line + "Question 17 + 18 + 19" + line + "\n");
+		
+		 char[] arr = {'a','b','c','a','b','d','r','c'};
+		 StringsQues s = new StringsQues();
+		 s.printArray(arr);
+		 System.out.println("there is " + s.how_many_chars(arr, 'a') + " of char 'a'");
+		 
+		 s.printArray(arr);
+		 System.out.println("there is " + s.how_many_chars(arr, 'a') + " of char 'a' and " + s.how_many_chars(arr, 'c') + " of char 'c'");
+		
+		 String str = "John Bryce";
+		 arr = s.convert_toChar_arr(str);
+		 s.printArray(arr);
+		 System.out.println("there is " + s.how_many_chars(arr, 'h') + " of char 'h' ");
+		 
+		 str = "Sara Shara Shir Cameach";
+		 arr = s.convert_toChar_arr(str);
+		 s.printArray(arr);
+		 
+		 
 	}
 
 }
