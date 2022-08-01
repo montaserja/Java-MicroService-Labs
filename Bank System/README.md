@@ -111,7 +111,7 @@
 ## Bank System
 
 ### Phase 1 - System Design
-![alt text](https://github.com/montaserja/Java-MicroService-Labs/blob/main/Picture.png?raw=true)
+![alt text](https://github.com/montaserja/Java-MicroService-Labs/blob/main/Bank%20System/Picture1.png)
  
 
 1.1. Module 6- encapsulation & basic flow control
