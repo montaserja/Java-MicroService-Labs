@@ -1,12 +1,11 @@
 # Bank System
 
-## System Description
+## 1) System Description
 
 ### Requirements:
 
 > **The bank system holds a client list and allows them to deposit and withdraw cash money and also manage accounts**
 
-##
 **Bank system provides the following:**
 - client management – which includes
     - add/remove/update client
@@ -108,10 +107,10 @@
 
 
 
-## Bank System
+## 2) Bank System
 
 ### Phase 1 - System Design
-![alt text](https://github.com/montaserja/Java-MicroService-Labs/blob/main/Picture.png?raw=true)
+![alt text](https://github.com/montaserja/Java-MicroService-Labs/blob/main/Bank%20System/Picture1.png)
  
 
 1.1. Module 6- encapsulation & basic flow control
