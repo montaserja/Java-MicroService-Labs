@@ -35,6 +35,18 @@ public class Account {
 		Logger.log(log);
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if(obj == this)
+			return true;
+		
+		if(obj instanceof Account && obj !=null && (((Account)obj).getId()==this.id))
+			return true;
+		else
+			return false;
+	}
+	
 	
 
 }

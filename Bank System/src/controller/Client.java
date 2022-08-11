@@ -4,23 +4,23 @@ import model.Account;
 import model.Log;
 import view.Logger;
 
-public class Client {
+public abstract class Client {
 	public final static int ACCOUNTS_NUM = 5;
 	private int id;
 	private String name ;
 	private float balance;
 	private Account[] accounts;
-	private float commisionRate ;
-	private float interestRate;
+	protected final float commisionRate ;
+	protected final float interestRate;
 	public Logger logger;
 	
-	public Client(int id , String name , float balance) {
+	public Client(int id , String name , float balance , float commisionRate , float interestRate) {
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.name = name;
 		this.balance = balance;
-		this.commisionRate = 0;
-		this.interestRate = 0;
+		this.commisionRate = commisionRate;
+		this.interestRate = interestRate;
 		this.logger = new Logger("ClientLogger");
 		accounts = new Account[ACCOUNTS_NUM];
 	}
@@ -73,10 +73,10 @@ public class Client {
 		return null;
 	}
 	
-	public void removeAccount(int id) {
+	public void removeAccount(Account account) {
 		Account accountToRemove;
 		for(int i = 0 ; i < ACCOUNTS_NUM ; ++i) {
-			if(accounts[i]!=null && accounts[i].getId() == id) { // removes account and shift right the array 
+			if(accounts[i]!=null && accounts[i].equals(account)) { // removes account and shift right the array 
 				accountToRemove = accounts[i];
 				this.setBalance(this.getBalance() + accountToRemove.getBalance());
 //				accounts[i] = null;
@@ -84,7 +84,7 @@ public class Client {
 					accounts[j] = accounts[j+1];
 				}
 				accounts[ACCOUNTS_NUM-1] = null;
-				this.logger.log(new Log(1,this.getId() , "account update – closed" , accountToRemove.getBalance()));
+				this.logger.log(new Log(1,account.getId() , "account update – closed" , accountToRemove.getBalance()));
 			}
 		}
 	}
@@ -94,12 +94,18 @@ public class Client {
 		this.balance +=(amount - this.commisionRate);
 	}
 	
-	public void withdraw(float amount) { // ???
-		float newBalance = this.balance -(amount + this.commisionRate);
-		if(newBalance < 0)
+	public void withdraw(float amount) { 
+		
+		float newBalance = this.balance -(amount + (amount * this.commisionRate));
+		if(newBalance < 0) {
 			System.out.println("there is no enough money");
-		else
+		}
+		else {
 			this.balance = newBalance;
+			Bank.updateTotalCommission(Bank.getTotalCommission() + ((amount * this.commisionRate)));
+		}
+		
+		
 	}
 	
 	public void autoUpdateAccounts() {
@@ -120,6 +126,31 @@ public class Client {
 		
 		return sum;
 	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if(this == obj)
+			return true;
+		if(obj != null && obj instanceof Client) {
+			if(((Client)obj).getId() == this.getId())
+				return true;
+			else
+				return false;
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", name=" + name + "]";
+	}  
+	
+	
+	
+	
+	
 	
 	
 	
