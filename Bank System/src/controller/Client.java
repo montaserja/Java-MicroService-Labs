@@ -21,6 +21,7 @@ public class Client {
 		this.balance = balance;
 		this.commisionRate = 0;
 		this.interestRate = 0;
+		this.logger = new Logger("ClientLogger");
 		accounts = new Account[ACCOUNTS_NUM];
 	}
 
@@ -86,6 +87,38 @@ public class Client {
 				this.logger.log(new Log(1,this.getId() , "account update – closed" , accountToRemove.getBalance()));
 			}
 		}
+	}
+	
+	
+	public void deposit(float amount) { // ???
+		this.balance +=(amount - this.commisionRate);
+	}
+	
+	public void withdraw(float amount) { // ???
+		float newBalance = this.balance -(amount + this.commisionRate);
+		if(newBalance < 0)
+			System.out.println("there is no enough money");
+		else
+			this.balance = newBalance;
+	}
+	
+	public void autoUpdateAccounts() {
+		for(int i = 0 ; i < ACCOUNTS_NUM ; ++i) {
+			if(this.accounts[i] !=null) {
+				// need to do
+			}
+		}
+	}
+	
+	public float getFortune() {
+		float sum = this.balance;
+		
+		for(int i = 0 ; i < ACCOUNTS_NUM ; ++i) {
+			if(this.accounts[i] != null)
+				sum += this.accounts[i].getBalance();
+		}
+		
+		return sum;
 	}
 	
 	
