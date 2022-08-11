@@ -31,7 +31,7 @@ public class Account {
 		this.balance = balance;
 		
 		
-		Log log = new Log(1, id, m, balance);
+		Log log = new Log(System.currentTimeMillis(), id, m, balance);
 		Logger.log(log);
 	}
 	

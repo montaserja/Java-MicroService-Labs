@@ -12,10 +12,20 @@ public class Logger {
 	
 	
 	public static void log(Log l) { // prints Log obj details
-		System.out.println(l.getData());
+		System.out.println(l);
 	}
 	
 	public Log[] getLogs() { // coming soon !!
 		return null;
+	}
+
+
+	public String getDriverName() {
+		return driverName;
+	}
+
+
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
 	}
 }

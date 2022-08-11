@@ -10,7 +10,7 @@ public class RegularClient extends Client {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Regular Client, id : " + this.getId();
+		return "name: " + this.getName() +" ,type: Regular Client, id : " + this.getId();
 	}
 	
 	

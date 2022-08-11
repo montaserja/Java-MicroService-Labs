@@ -1,8 +1,8 @@
 package controller;
 
-public class PLatinumClient extends Client {
+public class PlatinumClient extends Client {
 
-	public PLatinumClient(int id, String name, float balance) {
+	public PlatinumClient(int id, String name, float balance) {
 		super(id, name, balance , 0.01f , 0.005f);
 		// TODO Auto-generated constructor stub
 	}
@@ -11,6 +11,6 @@ public class PLatinumClient extends Client {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Platinum Client, id : " + this.getId();
+		return "name: " + this.getName() +" ,type: Platinum Client, id: " + this.getId();
 	}
 }

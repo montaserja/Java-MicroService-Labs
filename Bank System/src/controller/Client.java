@@ -12,7 +12,7 @@ public abstract class Client {
 	private Account[] accounts;
 	protected final float commisionRate ;
 	protected final float interestRate;
-	public Logger logger;
+	//public Logger logger;
 	
 	public Client(int id , String name , float balance , float commisionRate , float interestRate) {
 		// TODO Auto-generated constructor stub
@@ -21,7 +21,7 @@ public abstract class Client {
 		this.balance = balance;
 		this.commisionRate = commisionRate;
 		this.interestRate = interestRate;
-		this.logger = new Logger("ClientLogger");
+		//this.logger = new Logger("ClientLogger");
 		accounts = new Account[ACCOUNTS_NUM];
 	}
 
@@ -53,13 +53,14 @@ public abstract class Client {
 		for(int i = 0 ; i < ACCOUNTS_NUM ; ++i) {
 			if(accounts[i] == null) {
 				accounts[i] = account;
-				this.logger.log(new Log(1, this.getId() , "account update – opened" , account.getBalance()));
+				Logger.log(new Log(System.currentTimeMillis(), this.getId() , "account update – opened" , account.getBalance()));
+				this.setBalance(this.getBalance() + account.getBalance());
 				return;
 			}
 			if(accounts[i].getId() == account.getId())//I'm thinking about reorder accounts when removes one so the null accounts would be at the last of the array (maybe set or map data structure would make the work!!)
-				this.logger.log(new Log(1, this.getId() , "account with same id already exist" , account.getBalance()));
+				Logger.log(new Log(System.currentTimeMillis(), this.getId() , "account with same id already exist" , account.getBalance()));
 		}
-		this.logger.log(new Log(1, this.getId() , "account update – can't add account you already have 5 accounts" , account.getBalance()));
+		Logger.log(new Log(System.currentTimeMillis(), this.getId() , "account update – can't add account you already have 5 accounts" , account.getBalance()));
 		
 	}
 	
@@ -78,20 +79,23 @@ public abstract class Client {
 		for(int i = 0 ; i < ACCOUNTS_NUM ; ++i) {
 			if(accounts[i]!=null && accounts[i].equals(account)) { // removes account and shift right the array 
 				accountToRemove = accounts[i];
-				this.setBalance(this.getBalance() + accountToRemove.getBalance());
+				this.setBalance(this.getBalance() - accountToRemove.getBalance());
 //				accounts[i] = null;
 				for(int j = i ; j < ACCOUNTS_NUM-1 ; ++j) {
 					accounts[j] = accounts[j+1];
 				}
 				accounts[ACCOUNTS_NUM-1] = null;
-				this.logger.log(new Log(1,account.getId() , "account update – closed" , accountToRemove.getBalance()));
+				Logger.log(new Log(System.currentTimeMillis(),this.getId() , "account update – closed" , accountToRemove.getBalance()));
 			}
 		}
 	}
 	
 	
 	public void deposit(float amount) { // ???
-		this.balance +=(amount - this.commisionRate);
+		this.balance +=(amount - (this.commisionRate * amount));
+		Bank.updateTotalCommission(Bank.getTotalCommission() + (this.commisionRate * amount));
+		Logger.log(new Log(System.currentTimeMillis(), this.getId() , "account update – diposite" , amount));
+
 	}
 	
 	public void withdraw(float amount) { 
@@ -103,15 +107,15 @@ public abstract class Client {
 		else {
 			this.balance = newBalance;
 			Bank.updateTotalCommission(Bank.getTotalCommission() + ((amount * this.commisionRate)));
-		}
-		
-		
+			Logger.log(new Log(System.currentTimeMillis(), this.getId() , "account update – withdraw" , amount));
+		}	
 	}
 	
 	public void autoUpdateAccounts() {
 		for(int i = 0 ; i < ACCOUNTS_NUM ; ++i) {
 			if(this.accounts[i] !=null) {
-				// need to do
+				float amountToAdd = accounts[i].getBalance() * this.interestRate;
+				accounts[i].setBalance( accounts[i].getBalance() + amountToAdd);
 			}
 		}
 	}

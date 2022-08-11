@@ -9,7 +9,7 @@ public class Bank {
 	
 	public final static int CLIENTS_NUM = 100;
 	private Client[] clients;
-	private Logger logService;
+	//private Logger logService;
 	private static float totalCommission;
 	//account updater
 	
@@ -17,7 +17,7 @@ public class Bank {
 		// TODO Auto-generated constructor stub
 		
 		clients = new Client[CLIENTS_NUM];
-		logService = new Logger("bankLogger");
+		//logService = new Logger("bankLogger");
 		totalCommission = 0;
 	
 	}
@@ -44,7 +44,7 @@ public class Bank {
 		for(int i = 0 ; i< CLIENTS_NUM ; ++i) {
 			if(this.clients[i] == null) {
 				this.clients[i] = client;
-				logService.log(new Log(1, client.getId(), "client added", client.getBalance()));
+				Logger.log(new Log(System.currentTimeMillis(), client.getId(), "client added", client.getBalance()));
 				return;
 			}
 		}
@@ -55,7 +55,7 @@ public class Bank {
 		for(int i = 0 ; i< CLIENTS_NUM ; ++i) {
 			if(this.clients[i] != null && this.clients[i].equals(client)) {
 				
-				logService.log(new Log(1, client.getId(), "client removed", this.clients[i].getBalance()));
+				Logger.log(new Log(System.currentTimeMillis(), client.getId(), "client removed", this.clients[i].getBalance()));
 				this.clients[i] = null;
 				return;
 			}

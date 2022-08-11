@@ -10,7 +10,7 @@ public class GoldClient extends Client {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Gold Client, id : " + this.getId();
+		return "name: " + this.getName() +" ,type: Gold Client, id : " + this.getId();
 	}
 
 }

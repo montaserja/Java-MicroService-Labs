@@ -46,8 +46,8 @@ public class Log {
 //		this.amount = amount;
 //	}
 	
-	
-	public String getData() {
+	@Override
+	public String toString() {
 		return "client id : " + getClientId() + " ,time : " + getTimeStamp() + " ,desc : " + getDescription() + " ,amount : " + getAmount();
 	}
 	
